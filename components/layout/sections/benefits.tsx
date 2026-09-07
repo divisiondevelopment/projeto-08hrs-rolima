@@ -1,6 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
 import { icons } from "lucide-react";
+import Image from "next/image";
+import { MotionSection } from "@/components/layout/motion-section";
 
 interface BenefitsProps {
   icon: string;
@@ -10,75 +11,107 @@ interface BenefitsProps {
 
 const benefitList: BenefitsProps[] = [
   {
-    icon: "Blocks",
-    title: "Build Brand Trust",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+    icon: "Calendar",
+    title: "Data",
+    description: "18/10/2026",
   },
   {
-    icon: "LineChart",
-    title: "More Leads",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, natus consectetur.",
+    icon: "Clock",
+    title: "Horário",
+    description: "10h às 18h",
   },
   {
-    icon: "Wallet",
-    title: "Higher Conversions",
+    icon: "MapPin",
+    title: "Local",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus consectetur. A odio velit cum aliquam",
+      "Av. Porto Alegre, próximo ao Parque Galvani Guedes, Esteio/RS",
   },
   {
-    icon: "Sparkle",
-    title: "Test Marketing Ideas",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+    icon: "Package",
+    title: "Doação",
+    description: "1kg de alimento não perecível na inscrição",
   },
 ];
 
 export const BenefitsSection = () => {
   return (
-    <section id="benefits" className="container py-24 sm:py-32">
-      <div className="grid lg:grid-cols-2 place-items-center lg:gap-24">
-        <div>
-          <h2 className="text-lg text-primary mb-2 tracking-wider">Benefits</h2>
+    <section id="benefits" className="container py-16 sm:py-20">
+      <div className="text-center mb-12">
+        <h2 className="text-lg text-secondary mb-2 tracking-wider">
+          Informações
+        </h2>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Your Shortcut to Success
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
-            ducimus reprehenderit architecto rerum similique facere odit
-            deleniti necessitatibus quo quae.
-          </p>
-        </div>
+        <h2 className="font-display font-bold text-3xl leading-tight tracking-tight mb-4 md:text-4xl">
+          O que você precisa saber
+        </h2>
+        <p className="text-xl text-muted-foreground">
+          Tudo o que você precisa saber antes do grande dia.
+        </p>
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-4 w-full">
-          {benefitList.map(({ icon, title, description }, index) => (
-            <Card
-              key={title}
-              className="bg-muted/50 dark:bg-card hover:bg-background transition-all delay-75 group/number"
-            >
-              <CardHeader>
-                <div className="flex justify-between">
-                  <Icon
-                    name={icon as keyof typeof icons}
-                    size={32}
-                    color="hsl(var(--primary))"
-                    className="mb-6 text-primary"
-                  />
-                  <span className="text-5xl text-muted-foreground/15 font-medium transition-all delay-75 group-hover/number:text-muted-foreground/30">
-                    0{index + 1}
+      <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2 md:gap-6">
+        {/* Coluna esquerda: imagem */}
+        <MotionSection className="relative h-full min-h-[320px] overflow-hidden rounded-2xl lg:min-h-0">
+          <Image
+            src="/excelente-passeio.jpg"
+            alt="Participantes se divertindo durante o 08HRS de Rolimã"
+            fill
+            className="object-cover"
+          />
+
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+          <div className="absolute inset-x-0 bottom-0 z-20 p-6 md:p-8">
+            <h3 className="font-display font-bold text-2xl text-white md:text-3xl">
+              Um dia inteiro de aventura solidária
+            </h3>
+            <p className="mt-2 text-sm text-white/80 md:text-base">
+              Descida de carrinho, brincadeiras e solidariedade em Esteio, do
+              início ao fim do evento.
+            </p>
+          </div>
+        </MotionSection>
+
+        {/* Coluna direita: pilha de cards */}
+        <div className="flex h-full flex-col gap-4">
+          {benefitList.map(({ icon, title, description }, index) => {
+            const isFeatured = index === 0;
+
+            return (
+              <MotionSection
+                key={title}
+                delay={Math.min(index * 0.1, 0.4)}
+                className={`flex flex-1 items-center justify-between gap-4 rounded-2xl p-6 ${
+                  isFeatured
+                    ? "bg-secondary text-white"
+                    : "bg-muted text-foreground"
+                }`}
+              >
+                <div className="flex flex-col gap-1">
+                  <span
+                    className={`text-sm uppercase tracking-wide ${
+                      isFeatured ? "text-white/70" : "text-muted-foreground"
+                    }`}
+                  >
+                    {title}
                   </span>
+                  <span className="font-bold text-xl">{description}</span>
                 </div>
 
-                <CardTitle>{title}</CardTitle>
-              </CardHeader>
-
-              <CardContent className="text-muted-foreground">
-                {description}
-              </CardContent>
-            </Card>
-          ))}
+                <span
+                  className={`flex size-12 shrink-0 items-center justify-center rounded-full ${
+                    isFeatured ? "bg-white/10" : "bg-background"
+                  }`}
+                >
+                  <Icon
+                    name={icon as keyof typeof icons}
+                    size={20}
+                    color={isFeatured ? "white" : "hsl(var(--secondary))"}
+                  />
+                </span>
+              </MotionSection>
+            );
+          })}
         </div>
       </div>
     </section>

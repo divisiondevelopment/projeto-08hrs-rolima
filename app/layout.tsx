@@ -1,14 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Familjen_Grotesk, Karla } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Navbar } from "@/components/layout/navbar";
 import { ThemeProvider } from "@/components/layout/theme-provider";
-const inter = Inter({ subsets: ["latin"] });
+import { Navbar } from "@/components/layout/navbar";
+import { MotionProvider } from "@/components/layout/motion-provider";
+
+const fontDisplay = Familjen_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+});
+
+const fontBody = Karla({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
-  title: "Shadcn - Landing template",
-  description: "Landing template from Shadcn",
+  title: "1º 08HRS de Rolimã",
+  description:
+    "Corrida de carrinho de rolimã beneficente em Esteio/RS, no dia 18/10/2026, das 10h às 18h.",
 };
 
 export default function RootLayout({
@@ -18,16 +31,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background", inter.className)}>
+      <body
+        className={cn(
+          "min-h-screen bg-background pt-[76px] font-sans",
+          fontDisplay.variable,
+          fontBody.variable
+        )}
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-
-          {children}
+          <MotionProvider>
+            <Navbar />
+            {children}
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

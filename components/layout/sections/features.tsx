@@ -1,91 +1,71 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Icon } from "@/components/ui/icon";
-import { icons } from "lucide-react";
+import Image from "next/image";
+import { MotionSection } from "@/components/layout/motion-section";
 
 interface FeaturesProps {
-  icon: string;
+  image: string;
+  alt: string;
   title: string;
   description: string;
 }
 
 const featureList: FeaturesProps[] = [
   {
-    icon: "TabletSmartphone",
-    title: "Mobile Friendly",
+    image: "/criancas.jpg",
+    alt: "Crianças brincando nos brinquedos infláveis do evento",
+    title: "Brinquedos infláveis",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, consectetur.",
+      "Pula-pula, escorregadores e outras brincadeiras para a criançada se divertir o dia inteiro.",
   },
   {
-    icon: "BadgeCheck",
-    title: "Social Proof",
+    image: "/lanches.jpg",
+    alt: "Distribuição de lanches para os participantes do evento",
+    title: "Distribuição de lanches",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Natus consectetur, odio ea accusamus aperiam.",
+      "Lanches gratuitos distribuídos ao longo do evento para todos os participantes.",
   },
   {
-    icon: "Goal",
-    title: "Targeted Content",
+    image: "/guloseimas.jpg",
+    alt: "Guloseimas e doces distribuídos para a criançada no evento",
+    title: "Guloseimas para a criançada",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. odio ea accusamus aperiam.",
-  },
-  {
-    icon: "PictureInPicture",
-    title: "Strong Visuals",
-    description:
-      "Lorem elit. A odio velit cum aliquam. Natus consectetur dolores, odio ea accusamus aperiam.",
-  },
-  {
-    icon: "MousePointerClick",
-    title: "Clear CTA",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing. odio ea accusamus consectetur.",
-  },
-  {
-    icon: "Newspaper",
-    title: "Clear Headline",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur.",
+      "Doces e guloseimas espalhados pelo evento para alegrar a molecada.",
   },
 ];
 
 export const FeaturesSection = () => {
   return (
-    <section id="features" className="container py-24 sm:py-32">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Features
+    <section id="features" className="container py-16 sm:py-20">
+      <h2 className="text-lg text-secondary text-center mb-2 tracking-wider">
+        Atrações
       </h2>
 
-      <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        What Makes Us Different
+      <h2 className="font-display font-bold text-3xl text-center leading-tight tracking-tight mb-4 md:text-4xl">
+        Diversão para toda a família
       </h2>
 
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem
-        fugiat, odit similique quasi sint reiciendis quidem iure veritatis optio
-        facere tenetur.
+        Além da descida emocionante de carrinho de rolimã, o evento traz
+        atrações pensadas para a criançada aproveitar o dia inteiro.
       </h3>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {featureList.map(({ icon, title, description }) => (
-          <div key={title}>
-            <Card className="h-full bg-background border-0 shadow-none">
-              <CardHeader className="flex justify-center items-center">
-                <div className="bg-primary/20 p-2 rounded-full ring-8 ring-primary/10 mb-4">
-                  <Icon
-                    name={icon as keyof typeof icons}
-                    size={24}
-                    color="hsl(var(--primary))"
-                    className="text-primary"
-                  />
-                </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+        {featureList.map(({ image, alt, title, description }, index) => (
+          <MotionSection
+            key={title}
+            delay={Math.min(index * 0.1, 0.4)}
+            className="relative aspect-[4/5] overflow-hidden rounded-2xl"
+          >
+            <Image src={image} alt={alt} fill className="object-cover" />
 
-                <CardTitle>{title}</CardTitle>
-              </CardHeader>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-              <CardContent className="text-muted-foreground text-center">
-                {description}
-              </CardContent>
-            </Card>
-          </div>
+            <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+              <h4 className="font-display font-bold text-lg text-white md:text-xl">
+                {title}
+              </h4>
+              <p className="mt-1.5 text-sm text-white/80">{description}</p>
+            </div>
+          </MotionSection>
         ))}
       </div>
     </section>
