@@ -3,6 +3,7 @@ import { ContactSection } from "@/components/layout/sections/contact";
 import { FeaturesSection } from "@/components/layout/sections/features";
 import { FooterSection } from "@/components/layout/sections/footer";
 import { HeroSection } from "@/components/layout/sections/hero";
+import { LocationSection } from "@/components/layout/sections/location";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
 
 export const metadata = {
@@ -30,6 +31,7 @@ export default function Home() {
       <SponsorsSection />
       <BenefitsSection />
       <FeaturesSection />
+      <LocationSection />
       <ContactSection />
       <FooterSection />
     </>

@@ -1,45 +1,80 @@
 "use client";
 
-import { Icon } from "@/components/ui/icon";
 import { Marquee } from "@devnomic/marquee";
 import "@devnomic/marquee/dist/index.css";
-import { icons } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MotionSection } from "@/components/layout/motion-section";
-interface sponsorsProps {
-  icon: string;
-  name: string;
+
+interface SponsorLogo {
+  src: string;
+  alt: string;
+  href?: string;
+  width: number;
+  height: number;
 }
 
-const sponsors: sponsorsProps[] = [
+const sponsorLogos: SponsorLogo[] = [
   {
-    icon: "Crown",
-    name: "Acmebrand",
+    src: "/prefeitura-esteio.png",
+    alt: "Prefeitura de Esteio",
+    width: 2000,
+    height: 2000,
   },
   {
-    icon: "Vegan",
-    name: "Acmelogo",
+    src: "/logos/dominus.png",
+    alt: "Dominus",
+    width: 2000,
+    height: 2000,
   },
   {
-    icon: "Ghost",
-    name: "Acmesponsor",
+    src: "/logos/embrauto-pecas.png",
+    alt: "Embrauto Peças",
+    width: 2000,
+    height: 2000,
   },
   {
-    icon: "Puzzle",
-    name: "Acmeipsum",
+    src: "/logos/madeireira-ferragem-construsilva.png",
+    alt: "Madeireira Ferragem Construsilva",
+    width: 2000,
+    height: 2000,
   },
   {
-    icon: "Squirrel",
-    name: "Acme",
+    src: "/logos/prada-solucoes.png",
+    alt: "Prada Soluções",
+    width: 2000,
+    height: 2000,
   },
   {
-    icon: "Cookie",
-    name: "Accmee",
+    src: "/logos/rvl-instalacoes.png",
+    alt: "RVL Instalações",
+    width: 2000,
+    height: 2000,
   },
   {
-    icon: "Drama",
-    name: "Acmetech",
+    src: "/logos/sorte-motores.png",
+    alt: "Sorte Motores",
+    width: 2000,
+    height: 2000,
+  },
+  {
+    src: "/logos/souza-tec.png",
+    alt: "Souza Tec",
+    width: 2000,
+    height: 2000,
+  },
+  {
+    src: "/logos/vigiar-seguranca-inteligente.png",
+    alt: "Vigiar Segurança Inteligente",
+    width: 2000,
+    height: 2000,
+  },
+  {
+    src: "/logos/logo-division-mark.png",
+    alt: "Division Development",
+    href: "https://www.divisiondev.com.br/",
+    width: 3901,
+    height: 2176,
   },
 ];
 
@@ -51,41 +86,30 @@ export const SponsorsSection = () => {
       </h2>
 
       <MotionSection className="mx-auto">
-        <Marquee
-          className="gap-[3rem]"
-          fade
-          innerClassName="gap-[3rem]"
-          pauseOnHover
-        >
-          {sponsors.map(({ icon, name }) => (
-            <div
-              key={name}
-              className="flex items-center text-xl md:text-2xl font-medium"
-            >
-              <Icon
-                name={icon as keyof typeof icons}
-                size={32}
-                color="white"
-                className="mr-2"
+        <Marquee className="gap-[3rem]" fade innerClassName="gap-[3rem]" pauseOnHover>
+          {sponsorLogos.map(({ src, alt, href, width, height }) => {
+            const logo = (
+              <Image
+                src={src}
+                alt={alt}
+                width={width}
+                height={height}
+                className="h-24 w-52 object-contain grayscale brightness-50 contrast-150 transition-all duration-300 hover:grayscale-0 hover:brightness-100 hover:contrast-100 md:h-28 md:w-60"
               />
-              {name}
-            </div>
-          ))}
+            );
 
-          <Link
-            href="https://www.divisiondev.com.br/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center"
-          >
-            <Image
-              src="/logos/logo-division-mark.png"
-              alt="Division Development"
-              width={3901}
-              height={2176}
-              className="h-8 w-auto object-contain grayscale contrast-125 opacity-70 md:h-10"
-            />
-          </Link>
+            return (
+              <div key={src} className="flex items-center justify-center">
+                {href ? (
+                  <Link href={href} target="_blank" rel="noopener noreferrer">
+                    {logo}
+                  </Link>
+                ) : (
+                  logo
+                )}
+              </div>
+            );
+          })}
         </Marquee>
       </MotionSection>
     </section>
