@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Instagram, MessageCircle } from "lucide-react";
+import { ArrowRight, Instagram, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { MotionSection } from "@/components/layout/motion-section";
 
-const WHATSAPP_URL =
-  "https://wa.me/5551989449818?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20no%201%C2%BA%2008HRS%20de%20Rolim%C3%A3.";
+const FORM_URL = "https://forms.gle/NwULwZ7gixSqnfqeA";
 const INSTAGRAM_URL = "https://instagram.com/08hrsderolimaesteio";
+const SPONSOR_WHATSAPP_URL = `https://wa.me/5551989449818?text=${encodeURIComponent(
+  "Olá! Tenho interesse em ser um apoiador do 1º 08HRS de Rolimã."
+)}`;
 
 export const ContactSection = () => {
   return (
@@ -26,9 +28,9 @@ export const ContactSection = () => {
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button asChild size="lg" className="w-fit font-bold">
-            <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="size-5 mr-2" />
-              Inscrever-se via WhatsApp
+            <Link href={FORM_URL} target="_blank" rel="noopener noreferrer">
+              Fazer inscrição
+              <ArrowRight className="size-5 ml-2" />
             </Link>
           </Button>
 
@@ -44,6 +46,18 @@ export const ContactSection = () => {
             </Link>
           </Button>
         </div>
+
+        <p className="mt-6 text-sm text-white/70">
+          Quer apoiar como empresa ou parceiro?{" "}
+          <Link
+            href={SPONSOR_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-semibold text-white underline underline-offset-4 hover:text-white/90"
+          >
+            Seja um apoiador
+          </Link>
+        </p>
       </MotionSection>
     </section>
   );

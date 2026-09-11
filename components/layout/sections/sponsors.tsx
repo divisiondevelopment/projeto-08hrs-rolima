@@ -1,10 +1,19 @@
 "use client";
 
-import { Marquee } from "@devnomic/marquee";
-import "@devnomic/marquee/dist/index.css";
+import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 import { MotionSection } from "@/components/layout/motion-section";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+
+const SPONSOR_WHATSAPP_URL = `https://wa.me/5551989449818?text=${encodeURIComponent(
+  "Olá! Tenho interesse em ser um apoiador do 1º 08HRS de Rolimã."
+)}`;
 
 interface SponsorLogo {
   src: string;
@@ -76,9 +85,29 @@ const sponsorLogos: SponsorLogo[] = [
     width: 3901,
     height: 2176,
   },
+  {
+    src: "/logos/lm-serralheria.png",
+    alt: "Logo LM Serralheria",
+    width: 2000,
+    height: 2000,
+  },
+  {
+    src: "/logos/delsol-engenharia.png",
+    alt: "Logo Delsol Engenharia",
+    width: 2000,
+    height: 2000,
+  },
 ];
 
 export const SponsorsSection = () => {
+  const autoplay = useRef(
+    Autoplay({
+      delay: 2000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: false,
+    })
+  );
+
   return (
     <section id="sponsors" className="max-w-[75%] mx-auto pb-16 sm:pb-20">
       <h2 className="mb-8 text-center font-display font-bold text-2xl md:mb-10 md:text-3xl">
@@ -86,32 +115,58 @@ export const SponsorsSection = () => {
       </h2>
 
       <MotionSection className="mx-auto">
-        <Marquee className="gap-[3rem]" fade innerClassName="gap-[3rem]" pauseOnHover>
-          {sponsorLogos.map(({ src, alt, href, width, height }) => {
-            const logo = (
-              <Image
-                src={src}
-                alt={alt}
-                width={width}
-                height={height}
-                className="h-24 w-52 object-contain grayscale brightness-50 contrast-150 transition-all duration-300 hover:grayscale-0 hover:brightness-100 hover:contrast-100 md:h-28 md:w-60"
-              />
-            );
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+            dragFree: true,
+          }}
+          plugins={[autoplay.current]}
+          className="cursor-grab active:cursor-grabbing"
+        >
+          <CarouselContent className="-ml-4 items-center md:-ml-6">
+            {sponsorLogos.map(({ src, alt, href, width, height }) => {
+              const logo = (
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={width}
+                  height={height}
+                  draggable={false}
+                  className="h-28 w-full object-contain transition-transform duration-300 hover:scale-105 md:h-40 md:w-80"
+                />
+              );
 
-            return (
-              <div key={src} className="flex items-center justify-center">
-                {href ? (
-                  <Link href={href} target="_blank" rel="noopener noreferrer">
-                    {logo}
-                  </Link>
-                ) : (
-                  logo
-                )}
-              </div>
-            );
-          })}
-        </Marquee>
+              return (
+                <CarouselItem
+                  key={src}
+                  className="flex basis-[45%] items-center justify-center pl-4 md:basis-auto md:pl-6"
+                >
+                  {href ? (
+                    <Link href={href} target="_blank" rel="noopener noreferrer">
+                      {logo}
+                    </Link>
+                  ) : (
+                    logo
+                  )}
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+        </Carousel>
       </MotionSection>
+
+      <p className="mt-6 text-center text-sm text-muted-foreground sm:mt-8">
+        Quer apoiar esse evento beneficente?{" "}
+        <Link
+          href={SPONSOR_WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+        >
+          Seja um apoiador
+        </Link>
+      </p>
     </section>
   );
 };

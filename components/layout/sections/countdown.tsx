@@ -40,7 +40,7 @@ export const Countdown = () => {
 
   if (mounted && !timeLeft) {
     return (
-      <span className="font-display font-bold text-2xl text-secondary sm:text-3xl">
+      <span className="font-display font-bold text-3xl text-secondary sm:text-4xl">
         Evento em andamento!
       </span>
     );
@@ -57,11 +57,11 @@ export const Countdown = () => {
     <div className="flex min-w-fit items-start">
       {segments.map(({ label, value }, index) => (
         <Fragment key={label}>
-          <div className="flex flex-col items-center px-1 sm:px-2">
-            <span className="font-display font-bold text-2xl text-foreground sm:text-3xl">
+          <div className="flex flex-col items-center px-1.5 sm:px-3">
+            <span className="font-display font-bold text-4xl text-foreground sm:text-5xl">
               {value !== undefined ? String(value).padStart(2, "0") : "--"}
             </span>
-            <span className="mt-1 text-sm text-muted-foreground">
+            <span className="mt-1.5 text-base text-muted-foreground sm:text-lg">
               {label}
             </span>
           </div>
@@ -69,7 +69,7 @@ export const Countdown = () => {
           {index < segments.length - 1 && (
             <span
               aria-hidden
-              className="font-display font-bold text-xl text-muted-foreground sm:text-2xl"
+              className="font-display font-bold text-3xl text-muted-foreground sm:text-4xl"
             >
               :
             </span>

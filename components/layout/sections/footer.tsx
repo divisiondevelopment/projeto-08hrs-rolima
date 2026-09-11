@@ -54,12 +54,12 @@ export const FooterSection = () => {
               </Link>
 
               <Link
-                href="https://wa.me/5551989449818?text=Ol%C3%A1!%20Tenho%20interesse%20em%20me%20inscrever%20no%201%C2%BA%2008HRS%20de%20Rolim%C3%A3."
+                href="https://forms.gle/NwULwZ7gixSqnfqeA"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                WhatsApp
+                Fazer inscrição
               </Link>
             </div>
           </div>

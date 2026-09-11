@@ -1,12 +1,14 @@
 import { Icon } from "@/components/ui/icon";
 import { icons } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
 import { MotionSection } from "@/components/layout/motion-section";
 
 interface BenefitsProps {
   icon: string;
   title: string;
-  description: string;
+  description: ReactNode;
 }
 
 const benefitList: BenefitsProps[] = [
@@ -24,12 +26,24 @@ const benefitList: BenefitsProps[] = [
     icon: "MapPin",
     title: "Local",
     description:
-      "Av. Porto Alegre, próximo ao Parque Galvani Guedes, Esteio/RS",
+      "Av. Porto Alegre, 186, próximo ao Parque Galvani Guedes, Esteio/RS",
   },
   {
     icon: "Package",
     title: "Doação",
-    description: "1kg de alimento não perecível na inscrição",
+    description: (
+      <>
+        1kg de alimento não perecível (opcional), destinado à{" "}
+        <Link
+          href="https://www.instagram.com/apaeesteiors/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-4 hover:opacity-80"
+        >
+          APAE Esteio
+        </Link>
+      </>
+    ),
   },
 ];
 
