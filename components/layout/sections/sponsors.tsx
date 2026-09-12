@@ -10,6 +10,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 const SPONSOR_WHATSAPP_URL = `https://wa.me/5551989449818?text=${encodeURIComponent(
   "Olá! Tenho interesse em ser um apoiador do 1º 08HRS de Rolimã."
@@ -21,6 +22,8 @@ interface SponsorLogo {
   href?: string;
   width: number;
   height: number;
+  /** Logo has low contrast against the section's white background and needs its luminosity inverted. */
+  lowContrast?: boolean;
 }
 
 const sponsorLogos: SponsorLogo[] = [
@@ -53,12 +56,14 @@ const sponsorLogos: SponsorLogo[] = [
     alt: "Prada Soluções",
     width: 2000,
     height: 2000,
+    lowContrast: true,
   },
   {
     src: "/logos/rvl-instalacoes.png",
     alt: "RVL Instalações",
     width: 2000,
     height: 2000,
+    lowContrast: true,
   },
   {
     src: "/logos/sorte-motores.png",
@@ -71,6 +76,7 @@ const sponsorLogos: SponsorLogo[] = [
     alt: "Souza Tec",
     width: 2000,
     height: 2000,
+    lowContrast: true,
   },
   {
     src: "/logos/vigiar-seguranca-inteligente.png",
@@ -96,6 +102,19 @@ const sponsorLogos: SponsorLogo[] = [
     alt: "Logo Delsol Engenharia",
     width: 2000,
     height: 2000,
+  },
+  {
+    src: "/logos/dky-protecao-contra-incendio.png",
+    alt: "DKY Proteção Contra Incêndio",
+    width: 2000,
+    height: 2000,
+  },
+  {
+    src: "/logos/ve-engenharia-ltda.png",
+    alt: "VE Engenharia",
+    width: 2000,
+    height: 2000,
+    lowContrast: true,
   },
 ];
 
@@ -125,7 +144,7 @@ export const SponsorsSection = () => {
           className="cursor-grab active:cursor-grabbing"
         >
           <CarouselContent className="-ml-4 items-center md:-ml-6">
-            {sponsorLogos.map(({ src, alt, href, width, height }) => {
+            {sponsorLogos.map(({ src, alt, href, width, height, lowContrast }) => {
               const logo = (
                 <Image
                   src={src}
@@ -133,7 +152,10 @@ export const SponsorsSection = () => {
                   width={width}
                   height={height}
                   draggable={false}
-                  className="h-28 w-full object-contain transition-transform duration-300 hover:scale-105 md:h-40 md:w-80"
+                  className={cn(
+                    "h-28 w-full object-contain transition-transform duration-300 hover:scale-105 md:h-40 md:w-80",
+                    lowContrast && "invert hue-rotate-180 dark:filter-none"
+                  )}
                 />
               );
 
