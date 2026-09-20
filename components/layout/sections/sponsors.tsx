@@ -24,6 +24,8 @@ interface SponsorLogo {
   height: number;
   /** Logo has low contrast against the section's white background and needs its luminosity inverted. */
   lowContrast?: boolean;
+  /** Asset is the original folder art with a dark background; needs a border to stand out from the section's white background. */
+  darkBackground?: boolean;
 }
 
 const sponsorLogos: SponsorLogo[] = [
@@ -40,36 +42,11 @@ const sponsorLogos: SponsorLogo[] = [
     height: 2000,
   },
   {
-    src: "/logos/embrauto-pecas.png",
-    alt: "Embrauto Peças",
-    width: 2000,
-    height: 2000,
-  },
-  {
-    src: "/logos/madeireira-ferragem-construsilva.png",
-    alt: "Madeireira Ferragem Construsilva",
-    width: 2000,
-    height: 2000,
-  },
-  {
     src: "/logos/prada-solucoes.png",
     alt: "Prada Soluções",
     width: 2000,
     height: 2000,
     lowContrast: true,
-  },
-  {
-    src: "/logos/rvl-instalacoes.png",
-    alt: "RVL Instalações",
-    width: 2000,
-    height: 2000,
-    lowContrast: true,
-  },
-  {
-    src: "/logos/sorte-motores.png",
-    alt: "Sorte Motores",
-    width: 2000,
-    height: 2000,
   },
   {
     src: "/logos/souza-tec.png",
@@ -116,6 +93,25 @@ const sponsorLogos: SponsorLogo[] = [
     height: 2000,
     lowContrast: true,
   },
+  {
+    src: "/logos/los-santos-barbearia.png",
+    alt: "Los Santos Barbearia",
+    width: 1235,
+    height: 525,
+    lowContrast: true,
+  },
+  {
+    src: "/logos/orthodontic.png",
+    alt: "Orthodontic",
+    width: 1497,
+    height: 478,
+  },
+  {
+    src: "/logos/war-seguranca-eletronica.png",
+    alt: "War Segurança Eletrônica",
+    width: 2000,
+    height: 2000,
+  },
 ];
 
 export const SponsorsSection = () => {
@@ -144,36 +140,40 @@ export const SponsorsSection = () => {
           className="cursor-grab active:cursor-grabbing"
         >
           <CarouselContent className="-ml-4 items-center md:-ml-6">
-            {sponsorLogos.map(({ src, alt, href, width, height, lowContrast }) => {
-              const logo = (
-                <Image
-                  src={src}
-                  alt={alt}
-                  width={width}
-                  height={height}
-                  draggable={false}
-                  className={cn(
-                    "h-28 w-full object-contain transition-transform duration-300 hover:scale-105 md:h-40 md:w-80",
-                    lowContrast && "invert hue-rotate-180 dark:filter-none"
-                  )}
-                />
-              );
+            {sponsorLogos.map(
+              ({ src, alt, href, width, height, lowContrast, darkBackground }) => {
+                const logo = (
+                  <Image
+                    src={src}
+                    alt={alt}
+                    width={width}
+                    height={height}
+                    draggable={false}
+                    className={cn(
+                      "h-28 w-full object-contain transition-transform duration-300 hover:scale-105 md:h-40 md:w-80",
+                      lowContrast && "invert hue-rotate-180 dark:filter-none",
+                      darkBackground &&
+                        "rounded-md border-2 border-black bg-white p-1 md:p-2"
+                    )}
+                  />
+                );
 
-              return (
-                <CarouselItem
-                  key={src}
-                  className="flex basis-[45%] items-center justify-center pl-4 md:basis-auto md:pl-6"
-                >
-                  {href ? (
-                    <Link href={href} target="_blank" rel="noopener noreferrer">
-                      {logo}
-                    </Link>
-                  ) : (
-                    logo
-                  )}
-                </CarouselItem>
-              );
-            })}
+                return (
+                  <CarouselItem
+                    key={src}
+                    className="flex basis-[45%] items-center justify-center pl-4 md:basis-auto md:pl-6"
+                  >
+                    {href ? (
+                      <Link href={href} target="_blank" rel="noopener noreferrer">
+                        {logo}
+                      </Link>
+                    ) : (
+                      logo
+                    )}
+                  </CarouselItem>
+                );
+              }
+            )}
           </CarouselContent>
         </Carousel>
       </MotionSection>
