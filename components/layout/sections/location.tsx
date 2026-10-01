@@ -5,7 +5,7 @@ const MAP_EMBED_URL =
 
 export const LocationSection = () => {
   return (
-    <section id="location" className="container py-16 sm:py-20">
+    <section id="location" className="container scroll-mt-24 py-16 sm:py-20">
       <h2 className="text-lg text-secondary text-center mb-2 tracking-wider">
         Localização
       </h2>

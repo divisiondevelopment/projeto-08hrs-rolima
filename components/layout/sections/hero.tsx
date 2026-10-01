@@ -82,6 +82,12 @@ export const HeroSection = () => {
               <span className="text-base text-muted-foreground sm:text-lg">
                 10h às 18h — Esteio/RS
               </span>
+              <Link
+                href="#location"
+                className="text-sm text-muted-foreground underline"
+              >
+                Onde?
+              </Link>
             </div>
           </MotionSection>
         </div>

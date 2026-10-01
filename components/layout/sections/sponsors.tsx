@@ -28,7 +28,29 @@ interface SponsorLogo {
   darkBackground?: boolean;
 }
 
-const sponsorLogos: SponsorLogo[] = [
+const masterSponsors: SponsorLogo[] = [
+  {
+    src: "/logos/orthodontic.png",
+    alt: "Orthodontic",
+    width: 1661,
+    height: 458,
+  },
+  {
+    src: "/logos/embrauto-pecas.png",
+    alt: "Embrauto",
+    width: 1625,
+    height: 290,
+  },
+  {
+    src: "/logos/logo-division-mark.png",
+    alt: "Division Development",
+    href: "https://www.divisiondev.com.br/",
+    width: 3901,
+    height: 2176,
+  },
+];
+
+const goldSponsors: SponsorLogo[] = [
   {
     src: "/prefeitura-esteio.png",
     alt: "Prefeitura de Esteio",
@@ -60,13 +82,6 @@ const sponsorLogos: SponsorLogo[] = [
     alt: "Vigiar Segurança Inteligente",
     width: 2000,
     height: 2000,
-  },
-  {
-    src: "/logos/logo-division-mark.png",
-    alt: "Division Development",
-    href: "https://www.divisiondev.com.br/",
-    width: 3901,
-    height: 2176,
   },
   {
     src: "/logos/lm-serralheria.png",
@@ -101,18 +116,97 @@ const sponsorLogos: SponsorLogo[] = [
     lowContrast: true,
   },
   {
-    src: "/logos/orthodontic.png",
-    alt: "Orthodontic",
-    width: 1497,
-    height: 478,
-  },
-  {
     src: "/logos/war-seguranca-eletronica.png",
     alt: "War Segurança Eletrônica",
     width: 2000,
     height: 2000,
   },
+  {
+    src: "/logos/rvl-instalacoes.png",
+    alt: "RVL Instalações",
+    width: 1718,
+    height: 859,
+  },
+  {
+    src: "/logos/sorte-motores.png",
+    alt: "Sorte Motores",
+    width: 1218,
+    height: 609,
+  },
+  {
+    src: "/logos/construsilva.png",
+    alt: "ConstruSilva",
+    width: 1171,
+    height: 586,
+  },
+  {
+    src: "/logos/d-assessoria-esteio.png",
+    alt: "D Assessoria Esteio",
+    width: 650,
+    height: 203,
+  },
+  {
+    src: "/logos/grafica-thallys-arte.png",
+    alt: "Gráfica Thallys Arte",
+    width: 1024,
+    height: 1024,
+  },
+  {
+    src: "/logos/mendes-posto-e-conveniencia.png",
+    alt: "Mendes Posto e Conveniência",
+    width: 642,
+    height: 654,
+  },
+  {
+    src: "/logos/segpro-academy.png",
+    alt: "SegPro Academy",
+    width: 1600,
+    height: 639,
+  },
+  {
+    src: "/logos/raas-mecanica-adao.png",
+    alt: "RAAS Com. de Peças Diesel / Mecânica Adão",
+    width: 652,
+    height: 683,
+  },
 ];
+
+const SponsorLogoImage = ({
+  src,
+  alt,
+  href,
+  width,
+  height,
+  lowContrast,
+  darkBackground,
+  className,
+}: SponsorLogo & { className?: string }) => {
+  const logo = (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      draggable={false}
+      className={cn(
+        "w-full object-contain transition-transform duration-300 hover:scale-105",
+        className,
+        lowContrast && "invert hue-rotate-180 dark:filter-none",
+        darkBackground && "rounded-md border-2 border-black bg-white p-1 md:p-2"
+      )}
+    />
+  );
+
+  if (href) {
+    return (
+      <Link href={href} target="_blank" rel="noopener noreferrer">
+        {logo}
+      </Link>
+    );
+  }
+
+  return logo;
+};
 
 export const SponsorsSection = () => {
   const autoplay = useRef(
@@ -125,11 +219,28 @@ export const SponsorsSection = () => {
 
   return (
     <section id="sponsors" className="max-w-[75%] mx-auto pb-16 sm:pb-20">
-      <h2 className="mb-8 text-center font-display font-bold text-2xl md:mb-10 md:text-3xl">
-        Apoiadores do Evento
-      </h2>
-
       <MotionSection className="mx-auto">
+        <h2 className="mb-6 text-center font-display font-bold text-2xl md:mb-8 md:text-3xl">
+          Apoiadores Master
+        </h2>
+
+        <ul className="mx-auto grid max-w-4xl grid-cols-3 items-center gap-3 border-b border-border pb-8 sm:gap-6 md:gap-10 md:pb-10">
+          {masterSponsors.map((sponsor) => (
+            <li key={sponsor.src} className="flex items-center justify-center">
+              <SponsorLogoImage
+                {...sponsor}
+                className="h-16 sm:h-24 md:h-36"
+              />
+            </li>
+          ))}
+        </ul>
+      </MotionSection>
+
+      <MotionSection delay={0.1} className="mx-auto mt-10 md:mt-14">
+        <h2 className="mb-8 text-center font-display font-bold text-xl md:mb-10 md:text-2xl">
+          Apoiadores Gold
+        </h2>
+
         <Carousel
           opts={{
             align: "start",
@@ -140,40 +251,17 @@ export const SponsorsSection = () => {
           className="cursor-grab active:cursor-grabbing"
         >
           <CarouselContent className="-ml-4 items-center md:-ml-6">
-            {sponsorLogos.map(
-              ({ src, alt, href, width, height, lowContrast, darkBackground }) => {
-                const logo = (
-                  <Image
-                    src={src}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                    draggable={false}
-                    className={cn(
-                      "h-28 w-full object-contain transition-transform duration-300 hover:scale-105 md:h-40 md:w-80",
-                      lowContrast && "invert hue-rotate-180 dark:filter-none",
-                      darkBackground &&
-                        "rounded-md border-2 border-black bg-white p-1 md:p-2"
-                    )}
-                  />
-                );
-
-                return (
-                  <CarouselItem
-                    key={src}
-                    className="flex basis-[45%] items-center justify-center pl-4 md:basis-auto md:pl-6"
-                  >
-                    {href ? (
-                      <Link href={href} target="_blank" rel="noopener noreferrer">
-                        {logo}
-                      </Link>
-                    ) : (
-                      logo
-                    )}
-                  </CarouselItem>
-                );
-              }
-            )}
+            {goldSponsors.map((sponsor) => (
+              <CarouselItem
+                key={sponsor.src}
+                className="flex basis-[45%] items-center justify-center pl-4 md:basis-auto md:pl-6"
+              >
+                <SponsorLogoImage
+                  {...sponsor}
+                  className="h-28 md:h-40 md:w-80"
+                />
+              </CarouselItem>
+            ))}
           </CarouselContent>
         </Carousel>
       </MotionSection>
