@@ -169,6 +169,12 @@ const goldSponsors: SponsorLogo[] = [
     width: 652,
     height: 683,
   },
+  {
+    src: "/logos/city-express.png",
+    alt: "City Express",
+    width: 1158,
+    height: 352,
+  },
 ];
 
 const SponsorLogoImage = ({
