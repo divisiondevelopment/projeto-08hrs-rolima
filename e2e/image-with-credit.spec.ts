@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
 test("HRR-18 — ImageWithCredit exibe crédito", async ({ page }) => {
-  await page.goto("/playwright-fixtures/image-with-credit");
-  await expect(page.getByText("Crédito de teste Playwright")).toBeVisible();
+  await page.goto("/edicoes/edicao-01");
+  await expect(page.getByText("Fotógrafo A (placeholder)")).toBeVisible();
 });
