@@ -4,6 +4,7 @@ import { FeaturesSection } from "@/components/layout/sections/features";
 import { FooterSection } from "@/components/layout/sections/footer";
 import { HeroSection } from "@/components/layout/sections/hero";
 import { LocationSection } from "@/components/layout/sections/location";
+import { PastEditionsSection } from "@/components/layout/sections/past-editions";
 import { SponsorMaterialsSection } from "@/components/layout/sections/sponsor-materials";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
 import { EVENT_SEO_DESCRIPTION } from "@/lib/event";
@@ -33,6 +34,7 @@ export default function Home() {
       <FeaturesSection />
       <LocationSection />
       <ContactSection />
+      <PastEditionsSection />
       <FooterSection />
     </>
   );
