@@ -69,6 +69,7 @@ export function EditionGallery({ photos }: EditionGalleryProps) {
             alt={selected.alt}
             width={selected.width}
             height={selected.height}
+            sizes="90vw"
             className="max-h-[75vh] max-w-[90vw] rounded-md object-contain"
             onClick={(event) => event.stopPropagation()}
           />
