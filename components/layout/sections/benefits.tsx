@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { MotionSection } from "@/components/layout/motion-section";
+import { EVENT_DATE_SHORT, EVENT_TIME_RANGE } from "@/lib/event";
 
 interface BenefitsProps {
   icon: string;
@@ -15,12 +16,12 @@ const benefitList: BenefitsProps[] = [
   {
     icon: "Calendar",
     title: "Data",
-    description: "18/10/2026",
+    description: EVENT_DATE_SHORT,
   },
   {
     icon: "Clock",
     title: "Horário",
-    description: "10h às 18h",
+    description: EVENT_TIME_RANGE,
   },
   {
     icon: "MapPin",

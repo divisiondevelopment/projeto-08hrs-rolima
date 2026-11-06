@@ -6,22 +6,20 @@ import { HeroSection } from "@/components/layout/sections/hero";
 import { LocationSection } from "@/components/layout/sections/location";
 import { SponsorMaterialsSection } from "@/components/layout/sections/sponsor-materials";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
+import { EVENT_SEO_DESCRIPTION } from "@/lib/event";
 
 export const metadata = {
-  title: "1º 08HRS de Rolimã",
-  description:
-    "Corrida de carrinho de rolimã beneficente em Esteio/RS, no dia 18/10/2026, das 10h às 18h. Inscreva-se e participe!",
+  title: "2º 08HRS de Rolimã",
+  description: EVENT_SEO_DESCRIPTION,
   openGraph: {
     type: "website",
-    title: "1º 08HRS de Rolimã",
-    description:
-      "Corrida de carrinho de rolimã beneficente em Esteio/RS, no dia 18/10/2026, das 10h às 18h. Inscreva-se e participe!",
+    title: "2º 08HRS de Rolimã",
+    description: EVENT_SEO_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "1º 08HRS de Rolimã",
-    description:
-      "Corrida de carrinho de rolimã beneficente em Esteio/RS, no dia 18/10/2026, das 10h às 18h. Inscreva-se e participe!",
+    title: "2º 08HRS de Rolimã",
+    description: EVENT_SEO_DESCRIPTION,
   },
 };
 

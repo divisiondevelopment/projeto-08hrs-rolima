@@ -6,7 +6,15 @@ import Link from "next/link";
 import { Countdown } from "@/components/layout/sections/countdown";
 import { MotionSection } from "@/components/layout/motion-section";
 
-const FORM_URL = "https://forms.gle/NwULwZ7gixSqnfqeA";
+import {
+  EVENT_DATE_LONG,
+  EVENT_EDITION_LABEL,
+  EVENT_LOCATION_LABEL,
+  EVENT_TIME_RANGE,
+  INSCRIPTION_FORM_URL,
+} from "@/lib/event";
+
+const FORM_URL = INSCRIPTION_FORM_URL;
 
 // Grupo de estatísticas (1ª Edição / 8h De evento / 1kg Doado por inscrição)
 // removido da estrutura de 2 cards pequenos por falta de espaço — pode
@@ -26,7 +34,7 @@ export const HeroSection = () => {
           />
 
           <span className="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-foreground shadow-md">
-            1ª edição
+            {EVENT_EDITION_LABEL}
           </span>
         </MotionSection>
 
@@ -51,7 +59,7 @@ export const HeroSection = () => {
             <p className="max-w-md text-base text-white/90 sm:text-lg">
               Uma manhã e uma tarde inteiras de adrenalina, comunidade e
               solidariedade descendo a ladeira em Esteio. Traga 1kg de
-              alimento e faça parte da primeira edição.
+              alimento e faça parte da segunda edição.
             </p>
 
             <Button
@@ -77,10 +85,10 @@ export const HeroSection = () => {
 
             <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-2xl bg-muted p-6 text-center md:p-8">
               <span className="font-display font-bold text-2xl text-foreground sm:text-3xl">
-                18 de outubro de 2026
+                {EVENT_DATE_LONG}
               </span>
               <span className="text-base text-muted-foreground sm:text-lg">
-                10h às 18h — Esteio/RS
+                {EVENT_TIME_RANGE} — {EVENT_LOCATION_LABEL}
               </span>
               <Link
                 href="#location"

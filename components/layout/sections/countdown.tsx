@@ -9,7 +9,9 @@ interface TimeLeft {
   seconds: number;
 }
 
-const EVENT_DATE = new Date("2026-10-18T10:00:00-03:00").getTime();
+import { EVENT_START_MS } from "@/lib/event";
+
+const EVENT_DATE = EVENT_START_MS;
 
 function getTimeLeft(): TimeLeft | null {
   const diff = EVENT_DATE - Date.now();

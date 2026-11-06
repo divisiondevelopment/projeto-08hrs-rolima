@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Familjen_Grotesk, Karla } from "next/font/google";
 import "./globals.css";
+import { EVENT_SEO_DESCRIPTION } from "@/lib/event";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
@@ -19,9 +20,8 @@ const fontBody = Karla({
 });
 
 export const metadata: Metadata = {
-  title: "1º 08HRS de Rolimã",
-  description:
-    "Corrida de carrinho de rolimã beneficente em Esteio/RS, no dia 18/10/2026, das 10h às 18h.",
+  title: "2º 08HRS de Rolimã",
+  description: EVENT_SEO_DESCRIPTION,
 };
 
 export default function RootLayout({

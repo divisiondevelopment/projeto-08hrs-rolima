@@ -92,7 +92,7 @@ export const FooterSection = () => {
         {/* Linha inferior */}
         <div className="py-6">
           <p className="text-xs text-muted-foreground">
-            &copy; 2026 1º 08HRS de Rolimã — Esteio/RS
+            &copy; 2026 2º 08HRS de Rolimã — Esteio/RS
           </p>
         </div>
       </div>
