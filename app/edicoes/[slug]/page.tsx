@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EditionGallery } from "@/components/layout/edition-gallery";
@@ -8,6 +9,40 @@ import {
 
 export function generateStaticParams() {
   return getAllEditionSlugs().map((slug) => ({ slug }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const edition = getEditionBySlug(params.slug);
+  if (!edition) {
+    return { title: "Edição não encontrada" };
+  }
+
+  const title = `${edition.title} — 08HRS de Rolimã`;
+  const description = `${edition.summary} (${edition.eventDateLabel})`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      ...(edition.cover && {
+        images: [
+          {
+            url: edition.cover.src,
+            width: edition.cover.width,
+            height: edition.cover.height,
+            alt: edition.cover.alt,
+          },
+        ],
+      }),
+    },
+  };
 }
 
 export default function EditionDetailPage({

@@ -1,11 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { editions } from "@/lib/editions";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Edições passadas — 08HRS de Rolimã",
   description:
     "Reviva as edições anteriores do 08HRS de Rolimã em Esteio/RS.",
+  openGraph: {
+    title: "Edições passadas — 08HRS de Rolimã",
+    description:
+      "Reviva as edições anteriores do 08HRS de Rolimã em Esteio/RS.",
+    type: "website",
+  },
 };
 
 export default function EdicoesPage() {
