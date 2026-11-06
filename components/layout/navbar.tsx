@@ -16,6 +16,7 @@ const navLinks = [
   { href: "#features", label: "Atrações" },
   { href: "#sponsors", label: "Apoiadores" },
   { href: "#contact", label: "Inscrição" },
+  { href: "/edicoes", label: "Edições" },
 ];
 
 const INSTAGRAM_URL = "https://instagram.com/08hrsderolimaesteio";
