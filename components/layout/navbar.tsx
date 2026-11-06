@@ -12,10 +12,10 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "#benefits", label: "Informações" },
-  { href: "#features", label: "Atrações" },
-  { href: "#sponsors", label: "Apoiadores" },
-  { href: "#contact", label: "Inscrição" },
+  { href: "/#benefits", label: "Informações" },
+  { href: "/#features", label: "Atrações" },
+  { href: "/#sponsors", label: "Apoiadores" },
+  { href: "/#contact", label: "Inscrição" },
   { href: "/edicoes", label: "Edições" },
 ];
 
@@ -28,7 +28,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-card px-4 py-3 md:px-6">
           {/* Esquerda: wordmark do evento */}
           <Link
-            href="#"
+            href="/"
             className="font-display font-bold text-lg text-foreground sm:text-xl"
           >
             08HRS de Rolimã
